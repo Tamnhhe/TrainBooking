@@ -11,7 +11,6 @@ import java.util.Scanner;
 
 /**
  * @author QUANG TRUNG
- *
  */
 public class TrainMethod {
     TrainNode tail;
@@ -21,9 +20,6 @@ public class TrainMethod {
         tail = null;
     }
 
-    public void displayTrainListmenu() {
-
-    }
 
     public Train inputTrain() {
         System.out.println("Input train code:");
@@ -38,12 +34,11 @@ public class TrainMethod {
         double departTime = Double.parseDouble(sc.nextLine());
         System.out.println("Input train depart place:");
         String departPlace = sc.nextLine();
-        Train train = new Train(tcode, trainName, seat, booked, departTime, departPlace);
-        return train;
+        return new Train(tcode, trainName, seat, booked, departTime, departPlace);
     }
 
     // 1.1. Load data from file
-    public void loadDataFromFile(String filename, TrainNode head) throws FileNotFoundException {
+    public void loadDataFromFile(String filename, TrainNode head) {
         // Implement code to read data from a file and populate the linked list
 
 
@@ -77,12 +72,17 @@ public class TrainMethod {
     // 1.2. Input & add to the end
     public void addTrainToEnd(TrainNode head, Train train) {
         TrainNode q = new TrainNode(train);
+        TrainNode p = head;
         if (head == null) {
-            head = tail = q;
+            head = q;
             return;
+        } else {
+            while (p != null) {
+                p = p.next;
+            }
+            p = q;
         }
-        tail.next = q;
-        tail = q;
+
     }
 
     // 1.3. Display data

@@ -11,7 +11,7 @@ public class CustomerMethod {
     CustomerNode tail;
 
     // Method to input customer information from a file
-    public void loadDataFromFile(String fileName, CustomerNode head) {
+    public CustomerNode loadDataFromFile(String fileName, CustomerNode head) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
             String line;
@@ -24,13 +24,14 @@ public class CustomerMethod {
                     String phone = parts[2].trim();
                     // Create a new Customer object and add it to the list
                     Customer customer = new Customer(ccode, name, phone);
-                    addCustomer(customer, head);
+                    head = addCustomer(customer, head);
                 }
             }
             reader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return head;
     }
 
     public Customer inputCustomer() {
@@ -51,29 +52,33 @@ public class CustomerMethod {
 
 
     // Method to add a customer to the end of the list
-    public void addCustomer(Customer customer, CustomerNode head) {
+    public CustomerNode addCustomer(Customer customer, CustomerNode head) {
 
         CustomerNode newNode = new CustomerNode(customer);
+        CustomerNode p = head;
         if (head == null) {
             head = newNode;
-            tail = newNode;
+
         } else {
-            tail.next = newNode;
-            tail = newNode;
+            while (p.next != null) {
+                p = p.next;
+            }
+            p.next = newNode;
         }
+        return head;
     }
 
     // Method to display customer data
     public void displayCustomers(CustomerNode head) {
         CustomerNode current = head;
         while (current != null) {
-            System.out.println(current.data);
+            System.out.println(current.data.toString());
             current = current.next;
         }
     }
 
     // Method to save the customer list to a file
-    public void saveCustomersToFile(String fileName, CustomerNode head) {
+    public void saveDataToFile(String fileName, CustomerNode head) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
             CustomerNode current = head;
@@ -101,9 +106,9 @@ public class CustomerMethod {
     }
 
     // Method to delete a customer by ccode
-    public void deleteCustomerByCcode(String ccode, CustomerNode head) {
+    public CustomerNode deleteCustomerByCcode(String ccode, CustomerNode head) {
         if (head == null) {
-            return; // No customers in the list
+            return head; // No customers in the list
         }
 
         if (head.data.getCcode().equals(ccode)) {
@@ -112,7 +117,7 @@ public class CustomerMethod {
             if (head == null) {
                 tail = null; // If the list becomes empty, update the tail
             }
-            return;
+            return head;
         }
 
         CustomerNode current = head;
@@ -122,10 +127,11 @@ public class CustomerMethod {
                 if (current.next == null) {
                     tail = current; // If the last customer is deleted, update the tail
                 }
-                return;
+                return head;
             }
             current = current.next;
         }
+        return head;
     }
 }
 

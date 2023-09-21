@@ -47,7 +47,7 @@ public Customer(String ccode,String name,String phone){
 
     @Override
     public String toString() {
-        return "" + ccode + " | " +name+" | "+phone;
+        return ccode + "-" +name+"-"+phone;
 
     }
 }
