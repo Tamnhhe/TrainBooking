@@ -3,6 +3,7 @@
  */
 package csd.TrainBookingSystem.Method;
 
+import csd.TrainBookingSystem.Entity.Train;
 import csd.TrainBookingSystem.LinkerList.*;
 
 /**
@@ -28,7 +29,7 @@ public class TrainMethod {
     // 1.2. Input & add to the end
     public void addTrainToEnd(Train train) {
         TrainNode q = new TrainNode(train);
-        if(isEmpty()) {head=tail=q;return;}
+        if(head==null) {head=tail=q;return;}
         tail.next = q;
         tail = q;      
     }
@@ -98,7 +99,7 @@ public class TrainMethod {
 
                 while (index != null) {
 
-                    if (current.data.getTcode()>index.data.getTcode()) {
+                    if (current.data.getTcode().compareTo(index.data.getTcode())>1) {
                         temp = current.data;
                         current.data = index.data;
                         index.data = temp;

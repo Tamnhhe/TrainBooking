@@ -8,8 +8,8 @@ package csd.TrainBookingSystem.LinkerList;
  */
 import csd.TrainBookingSystem.Entity.Train;
 public class TrainNode {
-    Train data;
-    TrainNode next;
+    public Train data;
+    public TrainNode next;
 
     public TrainNode() {
     	
