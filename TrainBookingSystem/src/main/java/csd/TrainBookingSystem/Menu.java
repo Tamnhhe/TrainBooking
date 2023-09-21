@@ -3,6 +3,7 @@ package csd.TrainBookingSystem;
 import csd.TrainBookingSystem.LinkerList.BookingNode;
 import csd.TrainBookingSystem.LinkerList.CustomerNode;
 import csd.TrainBookingSystem.LinkerList.TrainNode;
+import csd.TrainBookingSystem.Method.CustomerMethod;
 import csd.TrainBookingSystem.Method.TrainMethod;
 
 import java.io.FileNotFoundException;
@@ -23,7 +24,10 @@ public class Menu {
                 switch (choice) {
                     case 1:
                         trainmenu(trainhead);
+                        break;
                     case 2:
+                        customermenu(customerhead);
+                        break;
                     case 3:
                     case 4:
                     default:
@@ -56,13 +60,29 @@ public class Menu {
                 switch (choice) {
                     case 1:
                         trainMethod.loadDataFromFile("train.txt", trainhead);
+                        break;
                     case 2:
-                        trainMethod.addTrainToEnd(trainhead,);
+
                     case 3:
+                        trainMethod.displayData(trainhead);
+                        break;
                     case 4:
+                        trainMethod.saveDataToFile("train.txt",trainhead);
+                        break;
                     case 5:
+                        String tcode = sc.nextLine();
+                        if (trainMethod.searchByTcode(trainhead, tcode) != null){
+                            trainMethod.searchByTcode(trainhead, tcode).toString();
+                        }else {
+                            System.out.println("Cant found!");
+                        }
+                        break;
                     case 6:
+                        trainMethod.sortByTcode(trainhead);
+                        trainMethod.displayData(trainhead);
+                        break;
                     case 7:
+
                     case 8:
                     case 9:
                     default:
@@ -71,6 +91,38 @@ public class Menu {
                 System.out.println("You must enter the number!");
             }
         } while (trainmenucheck);
+
+    }
+    public void customermenu(CustomerNode customerhead) throws FileNotFoundException {
+        Scanner sc = new Scanner(System.in);
+        boolean cusomtermenucheck = true;
+        do {
+            System.out.println("CUSTOMER LIST:\n" +
+                    "1. Load data from file \n" +
+                    "2. Input & add to the end \n" +
+                    "3. Display data \n" +
+                    "4. Save customer list to file \n" +
+                    "5. Search by ccode \n" +
+                    "6. Delete by ccode ");
+            try {
+                int choice = Integer.parseInt(sc.nextLine());
+                CustomerMethod customerMethod = new CustomerMethod();
+                switch (choice) {
+                    case 1:
+                        customerMethod.loadDataFromFile("customer.txt", customerhead);
+                    case 2:
+
+                    case 3:
+                    case 4:
+                    case 5:
+                    case 6:
+
+                    default:
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("You must enter the number!");
+            }
+        } while (cusomtermenucheck);
 
     }
 }

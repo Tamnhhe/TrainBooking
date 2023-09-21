@@ -1,23 +1,22 @@
 /**
- * 
+ *
  */
 package csd.TrainBookingSystem.Entity;
 
 /**
  * @author QUANG TRUNG
- *
  */
 public class Train {
-	String tcode;
+    String tcode;
     String trainName;
     int seat;
     int booked;
     double departTime;
     String departPlace;
-    
-    public Train() {   	
+
+    public Train() {
     }
-    
+
     public Train(String tcode, String trainName, int seat, int booked, double departTime, String departPlace) {
         this.tcode = tcode;
         this.trainName = trainName;
@@ -85,5 +84,10 @@ public class Train {
 
     public void setDepartPlace(String departPlace) {
         this.departPlace = departPlace;
+    }
+
+    @Override
+    public String toString() {
+        return tcode + '-' + trainName + '-' + seat + '-' + booked + '-' + departTime + '-' + departPlace;
     }
 }
