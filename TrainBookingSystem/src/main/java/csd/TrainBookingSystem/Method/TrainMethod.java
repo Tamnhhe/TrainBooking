@@ -5,7 +5,6 @@ package csd.TrainBookingSystem.Method;
 
 import csd.TrainBookingSystem.Entity.Train;
 import csd.TrainBookingSystem.LinkerList.*;
-
 import java.io.*;
 import java.util.Scanner;
 
@@ -13,13 +12,17 @@ import java.util.Scanner;
  * @author QUANG TRUNG
  */
 public class TrainMethod {
-    TrainNode tail;
+
     Scanner sc = new Scanner(System.in);
 
     public TrainMethod() {
+<<<<<<< HEAD
         tail = null;
     }
 
+=======
+    }
+>>>>>>> b2c38569719dd44f2dfaf3ce26e3a1aead9355ad
 
     public Train inputTrain() {
         System.out.println("Input train code:");
@@ -40,7 +43,6 @@ public class TrainMethod {
     // 1.1. Load data from file
     public void loadDataFromFile(String filename, TrainNode head) {
         // Implement code to read data from a file and populate the linked list
-
 
         try {
             FileReader fileReader = new FileReader(filename);
@@ -70,10 +72,11 @@ public class TrainMethod {
     }
 
     // 1.2. Input & add to the end
-    public void addTrainToEnd(TrainNode head, Train train) {
+    public TrainNode addTrainToEnd(TrainNode head, Train train) {
         TrainNode q = new TrainNode(train);
         TrainNode p = head;
         if (head == null) {
+<<<<<<< HEAD
             head = q;
             return;
         } else {
@@ -83,6 +86,18 @@ public class TrainMethod {
             p = q;
         }
 
+=======
+            head =  q;
+            return head;
+        }
+        TrainNode current = head;
+        while (current.next != null) {
+            System.out.println(current.data);
+            current = current.next;
+        }
+        current.next=q;
+        return head;
+>>>>>>> b2c38569719dd44f2dfaf3ce26e3a1aead9355ad
     }
 
     // 1.3. Display data
@@ -93,8 +108,7 @@ public class TrainMethod {
             current = current.next;
         }
     }
-
-
+    
     public void saveDataToFile(String filename, TrainNode head) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
@@ -110,7 +124,6 @@ public class TrainMethod {
         }
     }
 
-
     public Train searchByTcode(TrainNode head, String tcode) {
         TrainNode current = head;
         while (current != null) {
@@ -122,8 +135,7 @@ public class TrainMethod {
         return null;
     }
 
-
-    public void deleteByTcode(TrainNode head, String tcode) {
+    public TrainNode deleteByTcode(TrainNode head, String tcode) {
         TrainNode p = head;
         TrainNode prev = null;
 
@@ -132,34 +144,28 @@ public class TrainMethod {
             p = p.next;
         }
         if (p == null) {
-            return;
+            return head;
         }
         if (p == head) {
             head = head.next;
-            if (head == null) {
-                tail = null;
-            }
         } else {
             prev.next = p.next;
-            if (p == tail) {
-                tail = prev;
-            }
         }
+        return head;
     }
 
-    public void sortByTcode(TrainNode head) {
+    public TrainNode sortByTcode(TrainNode head) {
         TrainNode current = head, index = null;
         Train temp;
 
         if (head == null) {
-            return;
+            return head;
         } else {
             while (current != null) {
 
                 index = current.next;
 
                 while (index != null) {
-
 
                     if (current.data.getTcode().compareTo(index.data.getTcode()) > 0) {
                         temp = current.data;
@@ -172,9 +178,10 @@ public class TrainMethod {
                 current = current.next;
             }
         }
+        return head;
     }
 
-    public void addAfter(TrainNode head, TrainNode q, int k) {
+    public TrainNode addAfter(TrainNode head, TrainNode q, int k) {
         TrainNode current = head, newNode = new TrainNode();
         int i = 0;
         while (current != null) {
@@ -187,7 +194,7 @@ public class TrainMethod {
         }
         {
             if (q == null) {
-                return; // Make sure q is not null
+                return head; // Make sure q is not null
             }
 
             if (q == head) {
@@ -204,9 +211,10 @@ public class TrainMethod {
                 }
             }
         }
+        return head;
     }
 
-    public void deleteBefore(TrainNode head, String xcode) {
+    public TrainNode deleteBefore(TrainNode head, String xcode) {
         TrainNode current = head, q = null;
         while (current.next != null) {
             if (current.next.data.getTcode().compareTo(xcode) > 0) {
@@ -216,25 +224,16 @@ public class TrainMethod {
             current = current.next;
         }
         if (q == null) {
-            return; // Make sure q is not null
+            return head; // Make sure q is not null
         }
         if (q == head) {
             head = head.next;
-            if (head == null) {
-                tail = null; // If list is empty after removal
-            }
         } else {
             TrainNode p = head;
             while (p != null && p.next != q) {
                 p = p.next;
             }
-            if (p != null) {
-                p.next = q.next;
-                if (q == tail) {
-                    tail = p; // Update tail if q is the last node
-                }
-            }
         }
+        return head;
     }
 }
-
