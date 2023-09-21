@@ -9,20 +9,38 @@ import csd.TrainBookingSystem.LinkerList.*;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-
+import java.util.Scanner;
 /**
  * @author QUANG TRUNG
  *
  */
 public class TrainMethod {
     TrainNode tail;
-
+    Scanner sc= new Scanner(System.in);
     public TrainMethod() {
         tail = null;
     }
     public void displayTrainListmenu() {
     	
+    }
+    @SuppressWarnings("empty-statement")
+    public Train inputTrain(){
+        System.out.println("Input train code:");
+        String tcode=sc.nextLine();
+        System.out.println("Input train name:");
+        String trainName=sc.nextLine();
+        System.out.println("Input number of seat:");
+        int seat=Integer.parseInt(sc.nextLine());
+        System.out.println("Input number of seat has been booked:");
+        int booked=Integer.parseInt(sc.nextLine());;
+        System.out.println("Input train depart time:");
+        double departTime=Double.parseDouble(sc.nextLine());
+        System.out.println("Input train depart place:");
+        String departPlace=sc.nextLine();
+        Train train=new Train(tcode, trainName, seat, booked, departTime, departPlace);
+        return train;
     }
     // 1.1. Load data from file
     public void loadDataFromFile(String filename, TrainNode head) throws FileNotFoundException {
@@ -74,8 +92,21 @@ public class TrainMethod {
     }
 
    
-    public void saveDataToFile(String filename) {
-       
+    public void saveDataToFile(TrainNode head,String filename) {
+       try{
+           FileWriter writer = new FileWriter(filename);
+            TrainNode current = head;
+            while (current != null) {
+                Train train = current.data;
+                String line = String.format("%s,%s,%d,%d,%.2f,%s%n", train.getTcode(), train.getTrainName(),
+                        train.getSeat(), train.getBooked(), train.getDepartTime(), train.getDepartPlace());
+                writer.write(line);
+                current = current.next;
+            }
+            System.out.println("Train list saved to file: " + filename);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
   

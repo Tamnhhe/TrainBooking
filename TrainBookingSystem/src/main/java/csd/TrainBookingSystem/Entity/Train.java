@@ -8,7 +8,7 @@ package csd.TrainBookingSystem.Entity;
  *
  */
 public class Train {
-	String tcode;
+    String tcode;
     String trainName;
     int seat;
     int booked;
