@@ -6,11 +6,11 @@ package csd.TrainBookingSystem.LinkerList;
  * @author QUANG TRUNG
  *
  */
-import csd.TrainBookingSystem.Entity.*;
+import csd.TrainBookingSystem.Entity.Train;
 public class TrainNode {
     Train data;
     TrainNode next;
-    
+
     public TrainNode() {
     	
     }

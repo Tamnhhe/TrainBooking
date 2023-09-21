@@ -17,7 +17,9 @@ public class TrainMethod {
         head = null;
         tail = null;
     }
-
+    public void displayTrainListmenu() {
+    	
+    }
     // 1.1. Load data from file
     public void loadDataFromFile(String filename) {
         // Implement code to read data from a file and populate the linked list
