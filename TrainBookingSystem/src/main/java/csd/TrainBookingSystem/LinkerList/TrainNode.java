@@ -8,5 +8,13 @@ package csd.TrainBookingSystem.LinkerList;
  *
  */
 public class TrainNode {
-
+private Train data;
+    private TrainNode next;
+    
+    // Constructor
+    public TrainNode(Train data) {
+        this.data = data;
+        this.next = null;
+    }
+    
 }
