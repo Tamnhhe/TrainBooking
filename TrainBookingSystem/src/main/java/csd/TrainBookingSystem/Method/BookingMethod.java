@@ -82,7 +82,7 @@ public class BookingMethod {
 
         if (seatsToBook <= availableSeats) {
             Booking booking = new Booking(tcode, ccode, seatsToBook);
-            bookingHead = addBooking(booking);
+            bookingHead = addBooking(booking,bookingHead);
 
             trainMethod.updateBookedSeats(tcode, seatsToBook, trainhead);
 
