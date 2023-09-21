@@ -1,27 +1,30 @@
 package csd.TrainBookingSystem.Method;
 
+import csd.TrainBookingSystem.Entity.Customer;
+import csd.TrainBookingSystem.LinkerList.CustomerNode;
+
 import java.io.*;
 import java.util.Scanner;
 
 public class CustomerMethod {
-    CustomerNode head;
+    ;
     CustomerNode tail;
 
     // Method to input customer information from a file
-    public void loadCustomersFromFile(String fileName) {
+    public void loadDataFromFile(String fileName,CustomerNode head) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
             String line;
             while ((line = reader.readLine()) != null) {
                 // Parse the line to extract customer information
-                String[] parts = line.split("\\|");
+                String[] parts = line.split("-");
                 if (parts.length >= 3) {
                     String ccode = parts[0].trim();
                     String name = parts[1].trim();
                     String phone = parts[2].trim();
                     // Create a new Customer object and add it to the list
                     Customer customer = new Customer(ccode, name, phone);
-                    addCustomer(customer);
+                    addCustomer(customer, head);
                 }
             }
             reader.close();
@@ -31,7 +34,7 @@ public class CustomerMethod {
     }
 
     // Method to add a customer to the end of the list
-    public void addCustomer(Customer customer) {
+    public void addCustomer(Customer customer,CustomerNode head) {
         CustomerNode newNode = new CustomerNode(customer);
         if (head == null) {
             head = newNode;
@@ -43,7 +46,7 @@ public class CustomerMethod {
     }
 
     // Method to display customer data
-    public void displayCustomers() {
+    public void displayCustomers(CustomerNode head) {
         CustomerNode current = head;
         while (current != null) {
             System.out.println(current.data);
@@ -52,7 +55,7 @@ public class CustomerMethod {
     }
 
     // Method to save the customer list to a file
-    public void saveCustomersToFile(String fileName) {
+    public void saveCustomersToFile(String fileName,CustomerNode head) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
             CustomerNode current = head;
@@ -68,7 +71,7 @@ public class CustomerMethod {
     }
 
     // Method to search for a customer by ccode
-    public Customer searchCustomerByCcode(String ccode) {
+    public Customer searchCustomerByCcode(String ccode,CustomerNode head) {
         CustomerNode current = head;
         while (current != null) {
             if (current.data.getCcode().equals(ccode)) {
@@ -80,7 +83,7 @@ public class CustomerMethod {
     }
 
     // Method to delete a customer by ccode
-    public void deleteCustomerByCcode(String ccode) {
+    public void deleteCustomerByCcode(String ccode,CustomerNode head) {
         if (head == null) {
             return; // No customers in the list
         }

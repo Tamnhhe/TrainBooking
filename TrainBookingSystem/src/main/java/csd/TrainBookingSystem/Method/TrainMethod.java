@@ -6,10 +6,7 @@ package csd.TrainBookingSystem.Method;
 import csd.TrainBookingSystem.Entity.Train;
 import csd.TrainBookingSystem.LinkerList.*;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 /**
  * @author QUANG TRUNG
@@ -74,8 +71,19 @@ public class TrainMethod {
     }
 
    
-    public void saveDataToFile(String filename) {
-       
+    public void saveDataToFile(String filename,TrainNode head) {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
+            TrainNode current = head;
+            while (current != null) {
+                writer.write(current.data.toString());
+                writer.newLine();
+                current = current.next;
+            }
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     
