@@ -168,4 +168,26 @@ public class Menu {
         } while (customermenucheck);
 
     }
+
+    public void bookingmenu(){
+        Scanner sc = new Scanner(System.in);
+        boolean bookingmenucheck = true;
+        do {
+            System.out.println("BOOKING LIST:\n" +
+                    "1. Input data \n" +
+                    "2. Display booking data \n" +
+                    "3. Sort by tcode + code ");
+            try {
+                int choice = Integer.parseInt(sc.nextLine());
+                CustomerMethod customerMethod = new CustomerMethod();
+                switch (choice) {
+                    case 1:
+
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("You must enter the number!");
+            }
+        }while (bookingmenucheck);
+    }
+
 }
