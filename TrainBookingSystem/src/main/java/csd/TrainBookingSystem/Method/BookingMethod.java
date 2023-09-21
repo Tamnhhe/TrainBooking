@@ -102,7 +102,7 @@ public class BookingMethod {
         return false;
     }
 
-    public BookingNode addBooking(Booking booking, BookingNode bookingHead) {
+    public BookingNode addBooking(Booking booking, BookingNode head) {
         BookingNode newNode = new BookingNode(booking);
         if (head == null) {
             head = newNode;
