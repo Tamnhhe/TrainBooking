@@ -110,8 +110,9 @@ public class Menu {
                 switch (choice) {
                     case 1:
                         customerMethod.loadDataFromFile("customer.txt", customerhead);
+                        break;
                     case 2:
-
+                        customerMethod.addCustomer(customerMethod.inputCustomer(),customerhead);
                     case 3:
                     case 4:
                     case 5:
