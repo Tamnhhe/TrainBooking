@@ -73,10 +73,10 @@ public class TrainMethod {
             head = q;
             return head;
         } else {
-            while (p != null) {
+            while (p.next != null) {
                 p = p.next;
             }
-            p = q;
+            p.next = q;
             return head;
         }
 
