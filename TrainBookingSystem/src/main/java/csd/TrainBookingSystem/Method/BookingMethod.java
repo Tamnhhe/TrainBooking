@@ -25,24 +25,24 @@ public class BookingMethod {
         this.scanner = new Scanner(System.in);
     }
 
-    public void inputBookingData(TrainNode trainhead, CustomerNode customerHead) {
+    public BookingNode inputBookingData(TrainNode trainhead, CustomerNode customerHead, BookingNode bookingHead) {
         boolean checktcode = false;
-        String tcode="";
-        String ccode="";
+        String tcode = "";
+        String ccode = "";
         do {
             System.out.println("Enter train code:");
             tcode = scanner.nextLine().toUpperCase();
             TrainNode p = trainhead;
 
             while (p != null) {
-                if (p.data.getTcode().equals(tcode));
+                if (p.data.getTcode().equals(tcode)) ;
                 checktcode = false;
-                p=p.next;
+                p = p.next;
             }
-            if (checktcode){
+            if (checktcode) {
                 System.out.println("Cant find this Tcode!");
             }
-        }while (checktcode);
+        } while (checktcode);
         boolean checkccode = false;
         do {
             System.out.println("Enter customer code:");
@@ -50,44 +50,45 @@ public class BookingMethod {
             CustomerNode q = customerHead;
 
             while (q != null) {
-                if (q.data.getCcode().equals(tcode));
+                if (q.data.getCcode().equals(tcode)) ;
                 checkccode = false;
-                q=q.next;
+                q = q.next;
             }
-            if (checkccode){
+            if (checkccode) {
                 System.out.println("Cant find this Tcode!");
             }
-        }while (checkccode);
+        } while (checkccode);
         System.out.println("Enter number of seats to be booked:");
         int seatsToBook = Integer.parseInt(scanner.nextLine());
 
-        Train train = trainMethod.searchByTcode(trainhead,tcode);
-        Customer customer = customerMethod.searchCustomerByCcode(ccode,customerHead);
+        Train train = trainMethod.searchByTcode(trainhead, tcode);
+        Customer customer = customerMethod.searchCustomerByCcode(ccode, customerHead);
 
         if (train == null || customer == null) {
             System.out.println("Train code or customer code not found. Data not accepted.");
-            return;
+            return bookingHead;
         }
 
         if (isBookingExists(tcode, ccode)) {
             System.out.println("Booking already exists for this train and customer. Data not accepted.");
-            return;
+            return bookingHead;
         }
 
         int availableSeats = train.getSeat() - train.getBooked();
         if (seatsToBook > availableSeats) {
             System.out.println("Train is exhausted. Data not accepted.");
-            return;
+            return bookingHead;
         }
 
         if (seatsToBook <= availableSeats) {
             Booking booking = new Booking(tcode, ccode, seatsToBook);
-            addBooking(booking);
+            bookingHead = addBooking(booking);
 
-            trainMethod.updateBookedSeats(tcode, seatsToBook);
+            trainMethod.updateBookedSeats(tcode, seatsToBook, trainhead);
 
             System.out.println("Booking added successfully.");
         }
+        return bookingHead;
     }
 
     private boolean isBookingExists(String tcode, String ccode) {

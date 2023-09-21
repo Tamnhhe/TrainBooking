@@ -4,6 +4,7 @@ import csd.TrainBookingSystem.Entity.Train;
 import csd.TrainBookingSystem.LinkerList.BookingNode;
 import csd.TrainBookingSystem.LinkerList.CustomerNode;
 import csd.TrainBookingSystem.LinkerList.TrainNode;
+import csd.TrainBookingSystem.Method.BookingMethod;
 import csd.TrainBookingSystem.Method.CustomerMethod;
 import csd.TrainBookingSystem.Method.TrainMethod;
 
@@ -11,6 +12,9 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Menu {
+    TrainMethod trainMethod = new TrainMethod();
+    CustomerMethod customerMethod = new CustomerMethod();
+    BookingMethod bookingMethod = new BookingMethod(trainMethod,customerMethod);
     public void menu(TrainNode trainhead, CustomerNode customerhead, BookingNode bookinghead) throws FileNotFoundException {
         boolean menucheck = true;
         do {
@@ -30,6 +34,7 @@ public class Menu {
                         customermenu(customerhead);
                         break;
                     case 3:
+                        bookingmenu(trainhead,customerhead,bookinghead);
                     case 4:
                     default:
                 }
@@ -57,7 +62,7 @@ public class Menu {
                     "9. Delete the node before the node having tcode = xCode\t");
             try {
                 int choice = Integer.parseInt(sc.nextLine());
-                TrainMethod trainMethod = new TrainMethod();
+
                 switch (choice) {
                     case 1:
                         trainhead = trainMethod.loadDataFromFile("train.txt", trainhead);
@@ -121,7 +126,7 @@ public class Menu {
                     "6. Delete by ccode ");
             try {
                 int choice = Integer.parseInt(sc.nextLine());
-                CustomerMethod customerMethod = new CustomerMethod();
+
                 switch (choice) {
                     case 1:
                         customerhead = customerMethod.loadDataFromFile("customer.txt", customerhead);
@@ -169,9 +174,10 @@ public class Menu {
 
     }
 
-    public void bookingmenu(){
+    public void bookingmenu(TrainNode trainhead, CustomerNode customerhead, BookingNode bookinghead) {
         Scanner sc = new Scanner(System.in);
         boolean bookingmenucheck = true;
+
         do {
             System.out.println("BOOKING LIST:\n" +
                     "1. Input data \n" +
@@ -179,15 +185,24 @@ public class Menu {
                     "3. Sort by tcode + code ");
             try {
                 int choice = Integer.parseInt(sc.nextLine());
-                CustomerMethod customerMethod = new CustomerMethod();
+
                 switch (choice) {
                     case 1:
+                            bookingMethod.inputBookingData(trainhead,customerhead,bookinghead);
+                        break;
+                    case 2:
 
+                        break;
+                    case 3:
+
+                        break;
+                    default:
+                        break;
                 }
             } catch (NumberFormatException e) {
                 System.out.println("You must enter the number!");
             }
-        }while (bookingmenucheck);
+        } while (bookingmenucheck);
     }
 
 }

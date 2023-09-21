@@ -220,4 +220,16 @@ public class TrainMethod {
         }
         return head;
     }
+    public TrainNode updateBookedSeats(String tcode, int seatsToBook,TrainNode head) {
+        TrainNode current = head;
+        while (current != null) {
+            if (current.data.getTcode().equals(tcode)) {
+                int currentBooked = current.data.getBooked();
+                current.data.setBooked(currentBooked + seatsToBook);
+                return head; // Exit the loop after updating the booked seats
+            }
+            current = current.next;
+        }
+        return head;
+    }
 }
