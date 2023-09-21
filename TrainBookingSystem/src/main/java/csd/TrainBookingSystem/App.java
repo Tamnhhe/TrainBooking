@@ -27,7 +27,8 @@ public class App {
             System.out.println("TRAIN BOOKING SYSTEM\n" +
                     "1. Train list\n" +
                     "2. Customer list\n" +
-                    "3. Booking list");
+                    "3. Booking list\n"+
+                    "4. Exit\n");
             try {
                 int choice = Integer.parseInt(sc.nextLine());
 
@@ -40,7 +41,9 @@ public class App {
                         break;
                     case 3:
                         bookingHead =m.bookingmenu(trainHead,customerHead,bookingHead);
+                        break;
                     case 4:
+                        menucheck = false;
                     default:
                 }
             } catch (NumberFormatException e) {
