@@ -60,7 +60,7 @@ public class Train {
     }
 
     public void setBooked(int booked) {
-        if (booked >= 0 && booked < seat) {
+        if (booked >= 0 && booked <= seat) {
             this.booked = booked;
         } else {
             System.out.println("Invalid number of booked seats.");

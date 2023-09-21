@@ -2,19 +2,25 @@
  * 
  */
 package csd.TrainBookingSystem.LinkerList;
-
 /**
  * @author QUANG TRUNG
  *
  */
+import csd.TrainBookingSystem.Entity.*;
 public class TrainNode {
-private Train data;
-    private TrainNode next;
+    Train data;
+    TrainNode next;
     
+    public TrainNode() {
+    	
+    }
     // Constructor
     public TrainNode(Train data) {
+    	this(data,null);
+    }
+    public TrainNode(Train data,TrainNode next) {
         this.data = data;
-        this.next = null;
+        this.next = next;
     }
     
 }
