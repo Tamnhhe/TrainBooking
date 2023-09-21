@@ -29,8 +29,32 @@ public class CustomerMethod {
             e.printStackTrace();
         }
     }
+    public void inputAndAddCustomer() {
+        Scanner scanner = new Scanner(System.in);
 
-    // Method to add a customer to the end of the list
+        System.out.print("Enter ccode: ");
+        String ccode = scanner.nextLine();
+
+        System.out.print("Enter name: ");
+        String name = scanner.nextLine();
+
+        System.out.print("Enter phone: ");
+        String phone = scanner.nextLine();
+
+        Customer customer = new Customer(ccode, name, phone);
+        addCustomer(customer);
+
+        System.out.println("Customer added successfully.");
+    }
+
+    // ...
+
+
+
+
+
+
+// Method to add a customer to the end of the list
     public void addCustomer(Customer customer) {
         CustomerNode newNode = new CustomerNode(customer);
         if (head == null) {
