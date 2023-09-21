@@ -68,11 +68,11 @@ public class TrainMethod {
     }
 
     // 1.2. Input & add to the end
-    public void addTrainToEnd(TrainNode head, Train train) {
+    public TrainNode addTrainToEnd(TrainNode head, Train train) {
         TrainNode q = new TrainNode(train);
         if (head == null) {
             head =  q;
-            return;
+            return head;
         }
         TrainNode current = head;
         while (current.next != null) {
@@ -80,6 +80,7 @@ public class TrainMethod {
             current = current.next;
         }
         current.next=q;
+        return head;
     }
 
     // 1.3. Display data
@@ -117,7 +118,7 @@ public class TrainMethod {
         return null;
     }
 
-    public void deleteByTcode(TrainNode head, String tcode) {
+    public TrainNode deleteByTcode(TrainNode head, String tcode) {
         TrainNode p = head;
         TrainNode prev = null;
 
@@ -126,21 +127,22 @@ public class TrainMethod {
             p = p.next;
         }
         if (p == null) {
-            return;
+            return head;
         }
         if (p == head) {
             head = head.next;
         } else {
             prev.next = p.next;
         }
+        return head;
     }
 
-    public void sortByTcode(TrainNode head) {
+    public TrainNode sortByTcode(TrainNode head) {
         TrainNode current = head, index = null;
         Train temp;
 
         if (head == null) {
-            return;
+            return head;
         } else {
             while (current != null) {
 
@@ -159,9 +161,10 @@ public class TrainMethod {
                 current = current.next;
             }
         }
+        return head;
     }
 
-    public void addAfter(TrainNode head, TrainNode q, int k) {
+    public TrainNode addAfter(TrainNode head, TrainNode q, int k) {
         TrainNode current = head, newNode = new TrainNode();
         int i = 0;
         while (current != null) {
@@ -174,7 +177,7 @@ public class TrainMethod {
         }
         {
             if (q == null) {
-                return; // Make sure q is not null
+                return head; // Make sure q is not null
             }
 
             if (q == head) {
@@ -191,9 +194,10 @@ public class TrainMethod {
                 }
             }
         }
+        return head;
     }
 
-    public void deleteBefore(TrainNode head, String xcode) {
+    public TrainNode deleteBefore(TrainNode head, String xcode) {
         TrainNode current = head, q = null;
         while (current.next != null) {
             if (current.next.data.getTcode().compareTo(xcode) > 0) {
@@ -203,7 +207,7 @@ public class TrainMethod {
             current = current.next;
         }
         if (q == null) {
-            return; // Make sure q is not null
+            return head; // Make sure q is not null
         }
         if (q == head) {
             head = head.next;
@@ -213,5 +217,6 @@ public class TrainMethod {
                 p = p.next;
             }
         }
+        return head;
     }
 }
