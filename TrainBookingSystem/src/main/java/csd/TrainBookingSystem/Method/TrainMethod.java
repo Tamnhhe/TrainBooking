@@ -5,7 +5,6 @@ package csd.TrainBookingSystem.Method;
 
 import csd.TrainBookingSystem.Entity.Train;
 import csd.TrainBookingSystem.LinkerList.*;
-
 import java.io.*;
 import java.util.Scanner;
 
