@@ -3,6 +3,7 @@
  */
 package csd.TrainBookingSystem.Method;
 
+import csd.TrainBookingSystem.Entity.Train;
 import csd.TrainBookingSystem.LinkerList.*;
 
 /**
@@ -98,7 +99,7 @@ public class TrainMethod {
 
                 while (index != null) {
 
-                    if (current.data.getTcode()>index.data.getTcode()) {
+                    if (current.data.getTcode().compareTo(index.data.getTcode())>0) {
                         temp = current.data;
                         current.data = index.data;
                         index.data = temp;
