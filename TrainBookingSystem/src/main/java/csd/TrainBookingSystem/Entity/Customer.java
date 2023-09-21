@@ -12,12 +12,12 @@ String ccode;
 String name;
 String phone;
 
-Customer(){};
+public Customer(){};
 
-    Customer(String xccode,String xname,String xphone){
-        ccode = xccode;
-        name = xname;
-        phone = xphone;
+public Customer(String ccode,String name,String phone){
+        this.ccode = ccode;
+        this.name = name;
+        this.phone = phone;
     };
 
     public String getCcode() {

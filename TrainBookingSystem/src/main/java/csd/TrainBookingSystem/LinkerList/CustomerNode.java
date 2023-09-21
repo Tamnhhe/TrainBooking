@@ -12,15 +12,17 @@ import csd.TrainBookingSystem.Entity.Customer;
  */
 public class CustomerNode {
 
-Customer info;
+public Customer data;
 
-CustomerNode next;
+public CustomerNode next;
 
-CustomerNode() {};
+public CustomerNode() {};
 
-CustomerNode(Customer x;CustomerNode q){info = x;next=q};
+public CustomerNode(Customer data;CustomerNode next)
+    {this.data = data;
+    this.next = next};
 
-CustomerNode(Customer x){this(x,null);}
+public CustomerNode(Customer x){this(x,null);}
 
 
 
