@@ -220,6 +220,7 @@ public class TrainMethod {
         }
         return head;
     }
+
     public TrainNode updateBookedSeats(String tcode, int seatsToBook,TrainNode head) {
         TrainNode current = head;
         while (current != null) {
