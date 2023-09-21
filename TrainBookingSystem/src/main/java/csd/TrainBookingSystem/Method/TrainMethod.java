@@ -99,7 +99,11 @@ public class TrainMethod {
 
                 while (index != null) {
 
+<<<<<<< HEAD
                     if (current.data.getTcode().compareTo(index.data.getTcode())>1) {
+=======
+                    if (current.data.getTcode().compareTo(index.data.getTcode())>0) {
+>>>>>>> origin/main
                         temp = current.data;
                         current.data = index.data;
                         index.data = temp;
