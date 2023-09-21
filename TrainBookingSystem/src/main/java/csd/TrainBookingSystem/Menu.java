@@ -57,8 +57,14 @@ public class Menu {
                     case 1:
                         trainMethod.loadDataFromFile("train.txt", trainhead);
                     case 2:
+                        trainMethod.addTrainToEnd(trainhead,);
                     case 3:
                     case 4:
+                    case 5:
+                    case 6:
+                    case 7:
+                    case 8:
+                    case 9:
                     default:
                 }
             } catch (NumberFormatException e) {
