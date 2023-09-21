@@ -53,7 +53,7 @@ public class TrainMethod {
                     String depart_place = parts[5].trim();
 
                     Train train = new Train(tcode, train_name, seat, booked, depart_time, depart_place);
-                    addTrainToEnd(head, train);
+                    head = addTrainToEnd(head, train);
                 }
             }
 

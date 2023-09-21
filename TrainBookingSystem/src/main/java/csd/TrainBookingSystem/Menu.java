@@ -12,41 +12,13 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Menu {
+
     TrainMethod trainMethod = new TrainMethod();
     CustomerMethod customerMethod = new CustomerMethod();
-    BookingMethod bookingMethod = new BookingMethod(trainMethod,customerMethod);
-    public void menu(TrainNode trainhead, CustomerNode customerhead, BookingNode bookinghead) throws FileNotFoundException {
-        boolean menucheck = true;
-        do {
-            Scanner sc = new Scanner(System.in);
-            System.out.println("TRAIN BOOKING SYSTEM\n" +
-                    "1. Train list\n" +
-                    "2. Customer list\n" +
-                    "3. Booking list");
-            try {
-                int choice = Integer.parseInt(sc.nextLine());
-
-                switch (choice) {
-                    case 1:
-                        trainmenu(trainhead);
-                        break;
-                    case 2:
-                        customermenu(customerhead);
-                        break;
-                    case 3:
-                        bookingmenu(trainhead,customerhead,bookinghead);
-                    case 4:
-                    default:
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("You must enter the number!");
-            }
+    BookingMethod bookingMethod = new BookingMethod(trainMethod, customerMethod);
 
 
-        } while (menucheck);
-    }
-
-    public void trainmenu(TrainNode trainhead) throws FileNotFoundException {
+    public TrainNode trainmenu(TrainNode trainHead) throws FileNotFoundException {
         Scanner sc = new Scanner(System.in);
         boolean trainmenucheck = true;
         do {
@@ -65,55 +37,67 @@ public class Menu {
 
                 switch (choice) {
                     case 1:
-                        trainhead = trainMethod.loadDataFromFile("train.txt", trainhead);
+                        trainHead = trainMethod.loadDataFromFile("train.txt", trainHead);
+                        trainmenucheck = false;
                         break;
                     case 2:
-                        trainhead = trainMethod.addTrainToEnd(trainhead, trainMethod.inputTrain());
+                        trainHead = trainMethod.addTrainToEnd(trainHead, trainMethod.inputTrain());
+                        trainmenucheck = false;
                     case 3:
-                        trainMethod.displayData(trainhead);
+                        trainMethod.displayData(trainHead);
+                        trainmenucheck = false;
                         break;
                     case 4:
-                        trainMethod.saveDataToFile("train.txt", trainhead);
+                        trainMethod.saveDataToFile("train.txt", trainHead);
+                        trainmenucheck = false;
                         break;
                     case 5:
                         System.out.println("Enter the tcode:");
                         String tcode = sc.nextLine();
-                        if (trainMethod.searchByTcode(trainhead, tcode) != null) {
-                            System.out.println(trainMethod.searchByTcode(trainhead, tcode).toString());
+                        if (trainMethod.searchByTcode(trainHead, tcode) != null) {
+                            System.out.println(trainMethod.searchByTcode(trainHead, tcode).toString());
                         } else {
                             System.out.println("Cant found!");
                         }
+                        trainmenucheck = false;
                         break;
                     case 6:
                         System.out.println("Enter the tcode:");
                         tcode = sc.nextLine();
-                        if (trainMethod.searchByTcode(trainhead, tcode) != null) {
-                            trainhead = trainMethod.deleteByTcode(trainhead, tcode);
+                        if (trainMethod.searchByTcode(trainHead, tcode) != null) {
+                            trainHead = trainMethod.deleteByTcode(trainHead, tcode);
                         } else {
                             System.out.println("Cant found!");
                         }
+                        trainmenucheck = false;
                         break;
                     case 7:
-                        trainhead = trainMethod.sortByTcode(trainhead);
-                        trainMethod.displayData(trainhead);
+                        trainHead = trainMethod.sortByTcode(trainHead);
+                        trainMethod.displayData(trainHead);
+                        trainmenucheck = false;
                         break;
                     case 8:
                         Train train = trainMethod.inputTrain();
                         System.out.println("Enter the k:");
                         int k = Integer.parseInt(sc.nextLine());
-                        trainhead = trainMethod.addAfter(trainhead, new TrainNode(train), k);
+                        trainHead = trainMethod.addAfter(trainHead, new TrainNode(train), k);
+                        trainmenucheck = false;
                         break;
                     case 9:
+                        System.out.println("Enter the xcode:");
+                        String xcode = sc.nextLine();
+                        trainHead = trainMethod.deleteBefore(trainHead, xcode);
+                        trainmenucheck = false;
                     default:
                 }
             } catch (NumberFormatException e) {
                 System.out.println("You must enter the number!");
             }
         } while (trainmenucheck);
-
+        return trainHead;
     }
 
-    public void customermenu(CustomerNode customerhead) throws FileNotFoundException {
+    public CustomerNode customermenu(CustomerNode customerHead) throws FileNotFoundException {
         Scanner sc = new Scanner(System.in);
         boolean customermenucheck = true;
         do {
@@ -129,26 +113,26 @@ public class Menu {
 
                 switch (choice) {
                     case 1:
-                        customerhead = customerMethod.loadDataFromFile("customer.txt", customerhead);
+                        customerHead = customerMethod.loadDataFromFile("customer.txt", customerHead);
                         customermenucheck = false;
                         break;
                     case 2:
-                        customerhead = customerMethod.addCustomer(customerMethod.inputCustomer(), customerhead);
+                        customerHead = customerMethod.addCustomer(customerMethod.inputCustomer(), customerHead);
                         customermenucheck = false;
                         break;
                     case 3:
-                        customerMethod.displayCustomers(customerhead);
+                        customerMethod.displayCustomers(customerHead);
                         customermenucheck = false;
                         break;
                     case 4:
-                        customerMethod.saveDataToFile("customer.txt", customerhead);
+                        customerMethod.saveDataToFile("customer.txt", customerHead);
                         customermenucheck = false;
                         break;
                     case 5:
                         System.out.println("Enter the ccode:");
                         String ccode = sc.nextLine();
-                        if (customerMethod.searchCustomerByCcode(ccode, customerhead) != null) {
-                            System.out.println(customerMethod.searchCustomerByCcode(ccode, customerhead).toString());
+                        if (customerMethod.searchCustomerByCcode(ccode, customerHead) != null) {
+                            System.out.println(customerMethod.searchCustomerByCcode(ccode, customerHead).toString());
                         } else {
                             System.out.println("Cant found!");
                         }
@@ -157,8 +141,8 @@ public class Menu {
                     case 6:
                         System.out.println("Enter the ccode:");
                         ccode = sc.nextLine();
-                        if (customerMethod.searchCustomerByCcode(ccode, customerhead) != null) {
-                            customerhead = customerMethod.deleteCustomerByCcode(ccode, customerhead);
+                        if (customerMethod.searchCustomerByCcode(ccode, customerHead) != null) {
+                            customerHead = customerMethod.deleteCustomerByCcode(ccode, customerHead);
                         } else {
                             System.out.println("Cant found!");
                         }
@@ -171,10 +155,10 @@ public class Menu {
                 System.out.println("You must enter the number!");
             }
         } while (customermenucheck);
-
+        return customerHead;
     }
 
-    public void bookingmenu(TrainNode trainhead, CustomerNode customerhead, BookingNode bookinghead) {
+    public BookingNode bookingmenu(TrainNode trainHead, CustomerNode customerHead, BookingNode bookingHead) {
         Scanner sc = new Scanner(System.in);
         boolean bookingmenucheck = true;
 
@@ -188,13 +172,15 @@ public class Menu {
 
                 switch (choice) {
                     case 1:
-                            bookingMethod.inputBookingData(trainhead,customerhead,bookinghead);
+                        bookingHead = bookingMethod.inputBookingData(trainHead, customerHead, bookingHead);
+                        bookingmenucheck = false;
                         break;
                     case 2:
-
+                        bookingMethod.displayBookingData();
+                        bookingmenucheck = false;
                         break;
                     case 3:
-
+                        bookingHead = bookingMethod.sortByTcodeAndCcode(bookingHead);
                         break;
                     default:
                         break;
@@ -203,6 +189,7 @@ public class Menu {
                 System.out.println("You must enter the number!");
             }
         } while (bookingmenucheck);
+        return bookingHead;
     }
 
 }

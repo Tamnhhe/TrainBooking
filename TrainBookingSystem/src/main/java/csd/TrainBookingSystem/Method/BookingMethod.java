@@ -122,9 +122,9 @@ public class BookingMethod {
         }
     }
 
-    public void sortByTcodeAndCcode() {
+    public BookingNode sortByTcodeAndCcode(BookingNode head) {
         if (head == null || head.next == null) {
-            return;
+            return head;
         }
 
         BookingNode sortedHead = null;
@@ -152,5 +152,6 @@ public class BookingMethod {
         }
 
         head = sortedHead;
+        return head;
     }
 }
