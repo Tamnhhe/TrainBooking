@@ -102,14 +102,17 @@ public class BookingMethod {
         return false;
     }
 
-    public BookingNode addBooking(Booking booking) {
+    public BookingNode addBooking(Booking booking, BookingNode bookingHead) {
         BookingNode newNode = new BookingNode(booking);
         if (head == null) {
             head = newNode;
-            tail = newNode;
+
         } else {
-            tail.next = newNode;
-            tail = newNode;
+            BookingNode p = head;
+            while (p.next != null) {
+                p = p.next;
+            }
+            p.next = newNode;
         }
         return head;
     }
