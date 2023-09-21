@@ -6,6 +6,11 @@ package csd.TrainBookingSystem.Method;
 import csd.TrainBookingSystem.Entity.Train;
 import csd.TrainBookingSystem.LinkerList.*;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 /**
  * @author QUANG TRUNG
  *
@@ -20,8 +25,35 @@ public class TrainMethod {
     	
     }
     // 1.1. Load data from file
-    public void loadDataFromFile(String filename) {
+    public void loadDataFromFile(String filename, TrainNode head) throws FileNotFoundException {
         // Implement code to read data from a file and populate the linked list
+
+
+        try {
+            FileReader fileReader = new FileReader(filename);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] parts = line.split("-");
+                if (parts.length == 6) {
+                    String tcode = parts[0].trim();
+                    String train_name = parts[1].trim();
+                    int seat = Integer.parseInt(parts[2].trim());
+                    int booked = Integer.parseInt(parts[3].trim());
+                    double depart_time = Double.parseDouble(parts[4].trim());
+                    String depart_place = parts[5].trim();
+
+                    Train train = new Train(tcode, train_name, seat, booked, depart_time, depart_place);
+                    addTrainToEnd(head,train);
+                }
+            }
+
+            bufferedReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     // 1.2. Input & add to the end
