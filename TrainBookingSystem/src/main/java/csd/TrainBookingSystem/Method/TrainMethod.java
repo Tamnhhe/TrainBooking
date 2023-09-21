@@ -13,15 +13,12 @@ import java.util.Scanner;
  *
  */
 public class TrainMethod {
+
     TrainNode tail;
     Scanner sc = new Scanner(System.in);
 
     public TrainMethod() {
         tail = null;
-    }
-
-    public void displayTrainListmenu() {
-
     }
 
     public Train inputTrain() {
@@ -44,7 +41,6 @@ public class TrainMethod {
     // 1.1. Load data from file
     public void loadDataFromFile(String filename, TrainNode head) throws FileNotFoundException {
         // Implement code to read data from a file and populate the linked list
-
 
         try {
             FileReader fileReader = new FileReader(filename);
@@ -93,7 +89,6 @@ public class TrainMethod {
         }
     }
 
-
     public void saveDataToFile(String filename, TrainNode head) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
@@ -109,7 +104,6 @@ public class TrainMethod {
         }
     }
 
-
     public Train searchByTcode(TrainNode head, String tcode) {
         TrainNode current = head;
         while (current != null) {
@@ -120,7 +114,6 @@ public class TrainMethod {
         }
         return null;
     }
-
 
     public void deleteByTcode(TrainNode head, String tcode) {
         TrainNode p = head;
@@ -158,7 +151,6 @@ public class TrainMethod {
                 index = current.next;
 
                 while (index != null) {
-
 
                     if (current.data.getTcode().compareTo(index.data.getTcode()) > 0) {
                         temp = current.data;
@@ -236,4 +228,3 @@ public class TrainMethod {
         }
     }
 }
-
