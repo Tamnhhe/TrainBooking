@@ -15,21 +15,23 @@ public class BookingMethod {
 
     TrainMethod trainMethod;
     CustomerMethod customerMethod;
+    Scanner scanner;
 
     public BookingMethod(TrainMethod trainMethod, CustomerMethod customerMethod) {
         this.trainMethod = trainMethod;
         this.customerMethod = customerMethod;
+        this.scanner = new Scanner(System.in);
     }
 
-    public void inputBookingData(Scanner scanner) {
-        System.out.print("Enter train code: ");
+    public void inputBookingData() {
+        System.out.println("Enter train code:");
         String tcode = scanner.nextLine();
-        System.out.print("Enter customer code: ");
+        System.out.println("Enter customer code:");
         String ccode = scanner.nextLine();
-        System.out.print("Enter number of seats to be booked: ");
+        System.out.println("Enter number of seats to be booked:");
         int seatsToBook = Integer.parseInt(scanner.nextLine());
 
-        Train train = trainMethod.searchTrainByTcode(tcode);
+        Train train = trainMethod.searchByTcode(tcode);
         Customer customer = customerMethod.searchCustomerByCcode(ccode);
 
         if (train == null || customer == null) {
