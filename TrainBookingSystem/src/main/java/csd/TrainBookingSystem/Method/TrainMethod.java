@@ -86,7 +86,7 @@ public class TrainMethod {
         }
     }
 
-    
+  
     public Train searchByTcode(TrainNode head,String tcode) {
         TrainNode current = head;
         while (current != null) {
