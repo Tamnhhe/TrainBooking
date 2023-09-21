@@ -5,6 +5,7 @@ package csd.TrainBookingSystem.Method;
 
 import csd.TrainBookingSystem.Entity.Train;
 import csd.TrainBookingSystem.LinkerList.*;
+
 import java.io.*;
 import java.util.Scanner;
 
@@ -15,14 +16,6 @@ public class TrainMethod {
 
     Scanner sc = new Scanner(System.in);
 
-    public TrainMethod() {
-<<<<<<< HEAD
-        tail = null;
-    }
-
-=======
-    }
->>>>>>> b2c38569719dd44f2dfaf3ce26e3a1aead9355ad
 
     public Train inputTrain() {
         System.out.println("Input train code:");
@@ -41,7 +34,7 @@ public class TrainMethod {
     }
 
     // 1.1. Load data from file
-    public void loadDataFromFile(String filename, TrainNode head) {
+    public TrainNode loadDataFromFile(String filename, TrainNode head) {
         // Implement code to read data from a file and populate the linked list
 
         try {
@@ -68,7 +61,7 @@ public class TrainMethod {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        return head;
     }
 
     // 1.2. Input & add to the end
@@ -76,29 +69,20 @@ public class TrainMethod {
         TrainNode q = new TrainNode(train);
         TrainNode p = head;
         if (head == null) {
-<<<<<<< HEAD
+
             head = q;
-            return;
+            return head;
         } else {
             while (p != null) {
                 p = p.next;
             }
             p = q;
-        }
-
-=======
-            head =  q;
             return head;
         }
-        TrainNode current = head;
-        while (current.next != null) {
-            System.out.println(current.data);
-            current = current.next;
-        }
-        current.next=q;
-        return head;
->>>>>>> b2c38569719dd44f2dfaf3ce26e3a1aead9355ad
+
+
     }
+
 
     // 1.3. Display data
     public void displayData(TrainNode head) {
@@ -108,7 +92,7 @@ public class TrainMethod {
             current = current.next;
         }
     }
-    
+
     public void saveDataToFile(String filename, TrainNode head) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(filename));

@@ -60,10 +60,10 @@ public class Menu {
                 TrainMethod trainMethod = new TrainMethod();
                 switch (choice) {
                     case 1:
-                        trainMethod.loadDataFromFile("train.txt", trainhead);
+                        trainhead = trainMethod.loadDataFromFile("train.txt", trainhead);
                         break;
                     case 2:
-
+                        trainhead = trainMethod.addTrainToEnd(trainhead, trainMethod.inputTrain());
                     case 3:
                         trainMethod.displayData(trainhead);
                         break;
@@ -83,20 +83,20 @@ public class Menu {
                         System.out.println("Enter the tcode:");
                         tcode = sc.nextLine();
                         if (trainMethod.searchByTcode(trainhead, tcode) != null) {
-                            trainMethod.deleteByTcode(trainhead, tcode);
+                            trainhead = trainMethod.deleteByTcode(trainhead, tcode);
                         } else {
                             System.out.println("Cant found!");
                         }
                         break;
                     case 7:
-                        trainMethod.sortByTcode(trainhead);
+                        trainhead = trainMethod.sortByTcode(trainhead);
                         trainMethod.displayData(trainhead);
                         break;
                     case 8:
                         Train train = trainMethod.inputTrain();
                         System.out.println("Enter the k:");
                         int k = Integer.parseInt(sc.nextLine());
-                        trainMethod.addAfter(trainhead, new TrainNode(train), k);
+                        trainhead = trainMethod.addAfter(trainhead, new TrainNode(train), k);
                         break;
                     case 9:
                     default:
@@ -153,7 +153,7 @@ public class Menu {
                         System.out.println("Enter the ccode:");
                         ccode = sc.nextLine();
                         if (customerMethod.searchCustomerByCcode(ccode, customerhead) != null) {
-                           customerhead = customerMethod.deleteCustomerByCcode(ccode, customerhead);
+                            customerhead = customerMethod.deleteCustomerByCcode(ccode, customerhead);
                         } else {
                             System.out.println("Cant found!");
                         }
