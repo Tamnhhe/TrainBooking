@@ -14,11 +14,9 @@ import java.util.Scanner;
  */
 public class TrainMethod {
 
-    TrainNode tail;
     Scanner sc = new Scanner(System.in);
 
     public TrainMethod() {
-        tail = null;
     }
 
     public Train inputTrain() {
@@ -73,11 +71,15 @@ public class TrainMethod {
     public void addTrainToEnd(TrainNode head, Train train) {
         TrainNode q = new TrainNode(train);
         if (head == null) {
-            head = tail = q;
+            head =  q;
             return;
         }
-        tail.next = q;
-        tail = q;
+        TrainNode current = head;
+        while (current.next != null) {
+            System.out.println(current.data);
+            current = current.next;
+        }
+        current.next=q;
     }
 
     // 1.3. Display data
@@ -88,7 +90,7 @@ public class TrainMethod {
             current = current.next;
         }
     }
-
+    
     public void saveDataToFile(String filename, TrainNode head) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
@@ -128,14 +130,8 @@ public class TrainMethod {
         }
         if (p == head) {
             head = head.next;
-            if (head == null) {
-                tail = null;
-            }
         } else {
             prev.next = p.next;
-            if (p == tail) {
-                tail = prev;
-            }
         }
     }
 
@@ -211,19 +207,10 @@ public class TrainMethod {
         }
         if (q == head) {
             head = head.next;
-            if (head == null) {
-                tail = null; // If list is empty after removal
-            }
         } else {
             TrainNode p = head;
             while (p != null && p.next != q) {
                 p = p.next;
-            }
-            if (p != null) {
-                p.next = q.next;
-                if (q == tail) {
-                    tail = p; // Update tail if q is the last node
-                }
             }
         }
     }
