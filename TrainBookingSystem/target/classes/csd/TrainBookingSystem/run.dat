@@ -1,0 +1,5 @@
+cls
+javac App.java
+java App
+pause
+del *.class
