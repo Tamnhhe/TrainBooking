@@ -11,6 +11,8 @@ import csd.TrainBookingSystem.Method.TrainMethod;
 
 import java.util.Scanner;
 
+import static Validate.Validate.getInteger;
+
 public class BookingMethod {
     BookingNode head;
     BookingNode tail;
@@ -59,7 +61,7 @@ public class BookingMethod {
             }
         } while (checkccode);
         System.out.println("Enter number of seats to be booked:");
-        int seatsToBook = Integer.parseInt(scanner.nextLine());
+        int seatsToBook = getInteger();
 
         Train train = trainMethod.searchByTcode(trainhead, tcode);
         Customer customer = customerMethod.searchCustomerByCcode(ccode, customerHead);
