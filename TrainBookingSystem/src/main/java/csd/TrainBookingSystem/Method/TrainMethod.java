@@ -54,7 +54,7 @@ public class TrainMethod {
                     String depart_place = parts[5].trim();
 
                     Train train = new Train(tcode, train_name, seat, booked, depart_time, depart_place);
-                    addTrainToEnd(head, train);
+                    head = addTrainToEnd(head, train);
                 }
             }
 
@@ -74,10 +74,10 @@ public class TrainMethod {
             head = q;
             return head;
         } else {
-            while (p != null) {
+            while (p.next != null) {
                 p = p.next;
             }
-            p = q;
+            p.next = q;
             return head;
         }
 
@@ -231,6 +231,19 @@ public class TrainMethod {
             while (p != null && p.next != q) {
                 p = p.next;
             }
+        }
+        return head;
+    }
+
+    public TrainNode updateBookedSeats(String tcode, int seatsToBook,TrainNode head) {
+        TrainNode current = head;
+        while (current != null) {
+            if (current.data.getTcode().equals(tcode)) {
+                int currentBooked = current.data.getBooked();
+                current.data.setBooked(currentBooked + seatsToBook);
+                return head; // Exit the loop after updating the booked seats
+            }
+            current = current.next;
         }
         return head;
     }
