@@ -17,6 +17,7 @@ public class TrainMethod {
     Scanner sc = new Scanner(System.in);
 
 
+
     public Train inputTrain() {
         System.out.println("Input train code:");
         String tcode = sc.nextLine();
@@ -197,6 +198,19 @@ public class TrainMethod {
         }
         return head;
     }
+
+    public void updateBookedSeats(String tcode, int seatsToBook) {
+        TrainNode current = head;
+        while (current != null) {
+            if (current.data.getTcode().equals(tcode)) {
+                int currentBooked = current.data.getBooked();
+                current.data.setBooked(currentBooked + seatsToBook);
+                return; // Exit the loop after updating the booked seats
+            }
+            current = current.next;
+        }
+    }
+
 
     public TrainNode deleteBefore(TrainNode head, String xcode) {
         TrainNode current = head, q = null;
