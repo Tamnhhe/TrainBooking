@@ -15,6 +15,7 @@ import java.util.Scanner;
 public class TrainMethod {
 
     Scanner sc = new Scanner(System.in);
+<<<<<<< HEAD
     
     public boolean checktcode(TrainNode head,String tcode) {
     	boolean check=true;
@@ -84,6 +85,12 @@ public class TrainMethod {
     }
     
     public Train inputTrain(TrainNode head) {
+=======
+
+
+
+    public Train inputTrain() {
+>>>>>>> origin/main
         System.out.println("Input train code:");
         String tcode = inputTcode(head);
         System.out.println("Input train name:");
@@ -263,6 +270,19 @@ public class TrainMethod {
         }
         return head;
     }
+
+    public void updateBookedSeats(String tcode, int seatsToBook) {
+        TrainNode current = head;
+        while (current != null) {
+            if (current.data.getTcode().equals(tcode)) {
+                int currentBooked = current.data.getBooked();
+                current.data.setBooked(currentBooked + seatsToBook);
+                return; // Exit the loop after updating the booked seats
+            }
+            current = current.next;
+        }
+    }
+
 
     public TrainNode deleteBefore(TrainNode head, String xcode) {
         TrainNode current = head, q = null;
