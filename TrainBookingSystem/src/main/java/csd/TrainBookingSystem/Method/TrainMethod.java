@@ -15,21 +15,87 @@ import java.util.Scanner;
 public class TrainMethod {
 
     Scanner sc = new Scanner(System.in);
-
-
-    public Train inputTrain() {
+    
+    public boolean checktcode(TrainNode head,String tcode) {
+    	boolean check=true;
+    	while(head!=null) {
+    		if(head.data.getTcode()==tcode) return false;
+    		head=head.next;
+    	}
+    	return check;
+    }
+    public String inputTcode(TrainNode head) {
+    	String tcode;
+    	while(true) {    		
+    			tcode=sc.nextLine().trim();
+    			if(tcode.isEmpty()) System.out.println("Please not enter an empty train code.");
+    			else if(checktcode(head, tcode)) return tcode;    		
+    			else System.out.println("Train code already existed.");
+    	}
+    }
+    
+    public String inputString() {
+    	String s;
+    	while(true) {    		
+    			s=sc.nextLine().trim();
+    			if(s.isEmpty()) System.out.println("Please not enter an empty train code.");
+    			else return s;    		  			
+    	}
+    }
+    
+    public int inputSeat() {
+    	int seat;
+    	while(true) {
+    		try {
+    			seat=Integer.parseInt(sc.nextLine().trim());
+    			if(seat<0) System.out.println("Please enter number of seats larger then 0");
+    			else return seat;    		  			
+    	        }catch(NumberFormatException e) {
+    	        	System.out.println("Please enter a integer number that larger then 0");
+    	        }
+    	}
+    }
+    
+    public int inputSeatBooked(int seat) {
+    	int seatbooked;
+    	while(true) {
+    		try {
+    			seatbooked=Integer.parseInt(sc.nextLine().trim());
+    			if(seatbooked<=0) System.out.println("Please enter number of seats larger or equal to 0");
+    			else if(seatbooked>seat) System.out.println("Number of seat had been booked can't larger then number of seat."); 
+    			else return seatbooked;    		  			
+    	        }catch(NumberFormatException e) {
+    	        	System.out.println("Please enter a integer number that larger or equal to 0");
+    	        }
+    	}
+    }
+    
+    public double inputDepartTime() {
+    	double time;
+    	while(true) {
+    		try {
+    			time=Double.parseDouble(sc.nextLine());
+    			if(time<=0) System.out.println("Please enter number of seats larger or equal to 0");
+    			else return time;    		  			
+    	        }catch(NumberFormatException e) {
+    	        	System.out.println("Please enter a double number that larger or equal to 0");
+    	        }
+    	}
+    }
+    
+    public Train inputTrain(TrainNode head) {
         System.out.println("Input train code:");
-        String tcode = sc.nextLine();
+        String tcode = inputTcode(head);
         System.out.println("Input train name:");
-        String trainName = sc.nextLine();
+        String trainName = inputString();
         System.out.println("Input number of seat:");
-        int seat = Integer.parseInt(sc.nextLine());
+        int seat = inputSeat();
         System.out.println("Input number of seat has been booked:");
-        int booked = Integer.parseInt(sc.nextLine());
+        int booked = inputSeatBooked(seat);
         System.out.println("Input train depart time:");
-        double departTime = Double.parseDouble(sc.nextLine());
+        double departTime = inputDepartTime();
         System.out.println("Input train depart place:");
-        String departPlace = sc.nextLine();
+        String departPlace = inputString();
         return new Train(tcode, trainName, seat, booked, departTime, departPlace);
     }
 
