@@ -92,6 +92,10 @@ public class TrainMethod {
 
 
 
+
+
+
+
     public Train inputTrain(TrainNode head) {
 
         System.out.println("Input train code:");
@@ -99,14 +103,11 @@ public class TrainMethod {
         System.out.println("Input train name:");
         String trainName = inputString();
         System.out.println("Input number of seat:");
-
-
-        int seat = getInteger();
+        int seat = inputSeat();
         System.out.println("Input number of seat has been booked:");
-        int booked = getInteger();
+        int booked = inputSeatBooked(seat);
         System.out.println("Input train depart time:");
-        double departTime = getDouble();
-
+        double departTime = inputDepartTime();
         System.out.println("Input train depart place:");
         String departPlace = inputString();
         return new Train(tcode, trainName, seat, booked, departTime, departPlace);
