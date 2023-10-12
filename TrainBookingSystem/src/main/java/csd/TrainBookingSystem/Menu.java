@@ -41,8 +41,9 @@ public class Menu {
                         trainmenucheck = false;
                         break;
                     case 2:
-                        trainHead = trainMethod.addTrainToEnd(trainHead, trainMethod.inputTrain());
+                        trainHead = trainMethod.addTrainToEnd(trainHead, trainMethod.inputTrain(trainHead));
                         trainmenucheck = false;
+                        break;
                     case 3:
                         trainMethod.displayData(trainHead);
                         trainmenucheck = false;
@@ -77,7 +78,7 @@ public class Menu {
                         trainmenucheck = false;
                         break;
                     case 8:
-                        Train train = trainMethod.inputTrain();
+                        Train train = trainMethod.inputTrain(trainHead);
                         System.out.println("Enter the k:");
                         int k = Integer.parseInt(sc.nextLine());
                         trainHead = trainMethod.addAfter(trainHead, new TrainNode(train), k);

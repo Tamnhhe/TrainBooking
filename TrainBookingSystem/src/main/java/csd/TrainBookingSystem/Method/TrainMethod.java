@@ -18,7 +18,7 @@ import static Validate.Validate.getInteger;
 public class TrainMethod {
 
     Scanner sc = new Scanner(System.in);
-<<<<<<< HEAD
+
     
     public boolean checktcode(TrainNode head,String tcode) {
     	boolean check=true;
@@ -87,31 +87,26 @@ public class TrainMethod {
     	}
     }
     
+
+
+
+
+
     public Train inputTrain(TrainNode head) {
-=======
 
-
-
-    public Train inputTrain() {
->>>>>>> origin/main
         System.out.println("Input train code:");
         String tcode = inputTcode(head);
         System.out.println("Input train name:");
         String trainName = inputString();
         System.out.println("Input number of seat:");
-<<<<<<< HEAD
-        int seat = inputSeat();
-        System.out.println("Input number of seat has been booked:");
-        int booked = inputSeatBooked(seat);
-        System.out.println("Input train depart time:");
-        double departTime = inputDepartTime();
-=======
+
+
         int seat = getInteger();
         System.out.println("Input number of seat has been booked:");
         int booked = getInteger();
         System.out.println("Input train depart time:");
         double departTime = getDouble();
->>>>>>> origin/main
+
         System.out.println("Input train depart place:");
         String departPlace = inputString();
         return new Train(tcode, trainName, seat, booked, departTime, departPlace);
@@ -155,12 +150,14 @@ public class TrainMethod {
         if (head == null) {
 
             head = q;
+            System.out.println(train.toString());
             return head;
         } else {
             while (p.next != null) {
                 p = p.next;
             }
             p.next = q;
+            System.out.println(train.toString());
             return head;
         }
 
