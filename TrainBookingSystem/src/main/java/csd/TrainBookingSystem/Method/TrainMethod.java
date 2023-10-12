@@ -9,6 +9,9 @@ import csd.TrainBookingSystem.LinkerList.*;
 import java.io.*;
 import java.util.Scanner;
 
+import static Validate.Validate.getDouble;
+import static Validate.Validate.getInteger;
+
 /**
  * @author QUANG TRUNG
  */
@@ -96,11 +99,19 @@ public class TrainMethod {
         System.out.println("Input train name:");
         String trainName = inputString();
         System.out.println("Input number of seat:");
+<<<<<<< HEAD
         int seat = inputSeat();
         System.out.println("Input number of seat has been booked:");
         int booked = inputSeatBooked(seat);
         System.out.println("Input train depart time:");
         double departTime = inputDepartTime();
+=======
+        int seat = getInteger();
+        System.out.println("Input number of seat has been booked:");
+        int booked = getInteger();
+        System.out.println("Input train depart time:");
+        double departTime = getDouble();
+>>>>>>> origin/main
         System.out.println("Input train depart place:");
         String departPlace = inputString();
         return new Train(tcode, trainName, seat, booked, departTime, departPlace);
@@ -271,17 +282,6 @@ public class TrainMethod {
         return head;
     }
 
-    public void updateBookedSeats(String tcode, int seatsToBook) {
-        TrainNode current = head;
-        while (current != null) {
-            if (current.data.getTcode().equals(tcode)) {
-                int currentBooked = current.data.getBooked();
-                current.data.setBooked(currentBooked + seatsToBook);
-                return; // Exit the loop after updating the booked seats
-            }
-            current = current.next;
-        }
-    }
 
 
     public TrainNode deleteBefore(TrainNode head, String xcode) {
