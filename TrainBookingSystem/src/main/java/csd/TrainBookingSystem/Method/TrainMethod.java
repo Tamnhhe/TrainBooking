@@ -110,7 +110,9 @@ public class TrainMethod {
         double departTime = inputDepartTime();
         System.out.println("Input train depart place:");
         String departPlace = inputString();
-        return new Train(tcode, trainName, seat, booked, departTime, departPlace);
+        Train train = new Train(tcode, trainName, seat, booked, departTime, departPlace);
+        System.out.println(train.toString());
+        return train;
     }
 
     // 1.1. Load data from file
@@ -158,7 +160,7 @@ public class TrainMethod {
                 p = p.next;
             }
             p.next = q;
-            System.out.println(train.toString());
+
             return head;
         }
 
